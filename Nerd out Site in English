@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nerd Out – Free Knowledge for the World</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --dark: #0f172a;
+      --dark-2: #1e293b;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --gold: #fbbf24;
+      --green: #10b981;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Header / Nav */
+    header {
+      background: rgba(15,23,42,0.9);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #334155;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, var(--primary), #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .btn {
+      background: var(--primary);
+      color: white;
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 8rem 1rem 6rem;
+      background: linear-gradient(to bottom, #0f172a, #111827);
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+    .hero .highlight { color: var(--primary); }
+    .hero p {
+      font-size: 1.4rem;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      color: #cbd5e1;
+    }
+    .badges {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin: 2rem 0;
+    }
+    .badge {
+      background: rgba(37,99,235,0.15);
+      border: 1px solid rgba(37,99,235,0.4);
+      padding: 0.6rem 1.2rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      color: #93c5fd;
+    }
+
+    /* Features */
+    .features {
+      padding: 6rem 1rem;
+      background: var(--dark-2);
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+    }
+    .feature-card {
+      background: rgba(30,41,59,0.6);
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+    .feature-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .feature-icon {
+      font-size: 3.2rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+    }
+    .feature-card h3 { font-size: 1.6rem; margin-bottom: 1rem; }
+
+    /* Ranks / Societies */
+    .ranks-section {
+      padding: 6rem 1rem;
+    }
+    .ranks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .rank-card {
+      background: linear-gradient(135deg, #1e293b, #111827);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: all 0.4s;
+    }
+    .rank-card.aprendiz  { border-color: #64748b; }
+    .rank-card.mestre     { border-color: var(--green); }
+    .rank-card.deputado   { border-color: var(--primary); }
+    .rank-card.lider      { border-color: var(--gold); background: linear-gradient(135deg, #1e293b, #2d3748); }
+    .rank-icon { font-size: 4rem; margin-bottom: 1rem; }
+    .rank-card.aprendiz .rank-icon { color: #94a3b8; }
+    .rank-card.mestre .rank-icon   { color: var(--green); }
+    .rank-card.deputado .rank-icon { color: var(--primary); }
+    .rank-card.lider .rank-icon    { color: var(--gold); }
+
+    /* Footer */
+    footer {
+      background: #0a0f1a;
+      padding: 4rem 1rem 2rem;
+      text-align: center;
+      border-top: 1px solid #334155;
+    }
+    footer .social a {
+      font-size: 1.8rem;
+      margin: 0 1rem;
+      color: var(--gray);
+      transition: color 0.3s;
+    }
+    footer .social a:hover { color: var(--primary); }
+
+    @media (max-width: 768px) {
+      .nav-links { gap: 1rem; font-size: 0.95rem; }
+      .hero { padding: 6rem 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Nerd Out</div>
+        <div class="nav-links">
+          <a href="#courses">Courses</a>
+          <a href="#societies">Societies</a>
+          <a href="#assembly">Assembly</a>
+          <a href="#rewards">Rewards</a>
+          <a href="#" class="btn btn-outline">Login</a>
+          <a href="#" class="btn">Register</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>All the World's Knowledge <span class="highlight">For Free</span></h1>
+      <p>Courses, lectures, books, and communities from universities across the globe. Subtitles in dozens of languages + automatic book translation.</p>
+      
+      <div class="badges">
+        <span class="badge"><i class="fas fa-video"></i> Subtitled videos</span>
+        <span class="badge"><i class="fas fa-book"></i> Translated books</span>
+        <span class="badge"><i class="fas fa-users"></i> Global societies</span>
+        <span class="badge"><i class="fas fa-coins"></i> Crypto rewards</span>
+      </div>
+
+      <a href="#courses" class="btn" style="font-size:1.3rem; padding:1rem 2.5rem;">Explore Courses Now</a>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <h2 style="text-align:center; font-size:3rem; margin-bottom:4rem;">Why Nerd Out?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-globe"></i></div>
+          <h3>World Universities</h3>
+          <p>Content from MIT, Harvard, Oxford, USP, UEM, Yale...</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-language"></i></div>
+          <h3>Subtitles + Translation</h3>
+          <p>Choose English, Portuguese, Changana, Spanish... or automatic book translation</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-users-rectangle"></i></div>
+          <h3>Societies & Assemblies</h3>
+          <p>From Apprentice to Leader – discuss, ask questions, and vote on the platform's future</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-coins"></i></div>
+          <h3>Crypto Rewards</h3>
+          <p>Earn tokens for studying, helping others, and creating content...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ranks-section">
+    <div class="container">
+      <h2 style="text-align:center; font-size:3rem; margin-bottom:2rem;">Progress & Societies</h2>
+      <p style="text-align:center; max-width:800px; margin:0 auto 3rem; color:#cbd5e1;">
+        Start as an <strong>Apprentice</strong> → evolve to <strong>Master</strong> → become a <strong>Deputy</strong> → lead as a <strong>Society Leader</strong>
+      </p>
+
+      <div class="ranks-grid">
+        <div class="rank-card aprendiz">
+          <div class="rank-icon"><i class="fas fa-seedling"></i></div>
+          <h3>Apprentice</h3>
+          <p>Initial Level<br>Explore and learn</p>
+        </div>
+        <div class="rank-card mestre">
+          <div class="rank-icon"><i class="fas fa-graduation-cap"></i></div>
+          <h3>Master</h3>
+          <p>Complete advanced courses<br>Help other students</p>
+        </div>
+        <div class="rank-card deputado">
+          <div class="rank-icon"><i class="fas fa-gavel"></i></div>
+          <h3>Deputy</h3>
+          <p>Participate in the Assembly<br>Vote on decisions</p>
+        </div>
+        <div class="rank-card lider">
+          <div class="rank-icon"><i class="fas fa-crown"></i></div>
+          <h3>Society Leader</h3>
+          <p>16 Councilors + Leaders<br>Shape the future of the platform</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p style="margin-bottom:1.5rem;">&copy; 2026 Global University – Free Knowledge for Everyone</p>
+      <div class="social">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-discord"></i></a>
+        <a href="#"><i class="fab fa-telegram"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple JS for smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) {
+          target.scrollIntoView({
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
